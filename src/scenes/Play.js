@@ -15,12 +15,27 @@ class Play extends Phaser.Scene {
         // want layer order to be:  starfield, green ui bar, borders for now
         // scrolling starfield map:
         this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.dots = this.add.tileSprite(0,
+            0,
+            game.config.width,
+            game.config.height,
+            'dots'
+        ).setOrigin(0, 0);
+        this.streaks = this.add.tileSprite(0,
+            0,
+            game.config.width,
+            game.config.height,
+            'streaks'
+        ).setOrigin(0, 0);
+        //this.dots = this.add.tileSprite(0, 0, 640, 480, 'dots').setOrigin(0, 0);
+        //this.streaks = this.add.tileSprite(0, 0, 640, 480, 'streaks').setOrigin(0, 0);
+
         // add.tileSprite() takes in args of:( x-pos, y-pos, width, height, string-key)
         // string-key is the name of the sprite we made in Menu
        
         // green UI background:
         let green = 0x00FF00;
-        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, green).setOrigin(0, 0);
+        this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2.1, green).setOrigin(0, 0);
         
  
         // white borders:
@@ -39,7 +54,7 @@ class Play extends Phaser.Scene {
         this.ship02 = new Spaceship(this, game.config.width + borderUISize * 3, borderUISize * 5 + borderPadding * 2, 'spaceship', 0, 20).setOrigin(0, 0);
         this.ship03 = new Spaceship(this, game.config.width, borderUISize * 6 + borderPadding * 4, 'spaceship', 0, 10).setOrigin(0, 0);
         this.ships = [this.ship01, this.ship02, this.ship03];
-        this.ufo = new UFO(this, game.config.width /3 , borderUISize * 4, 'ufo', 0, 50);
+        this.ufo = new UFO(this, game.config.width /3, borderUISize * 4, 'ufo', 0, 50);
 
         // defining keys (maybe change LEFT and RIGHT to the A and D keys...)
         keyFIRE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
@@ -85,10 +100,13 @@ class Play extends Phaser.Scene {
 
     secondFunc() {
         //runs every second
-        this.secondsPassed += 1;
-        //this.runningTime = true;
-        //console.log("second passed " + this.secondsPassed);
-        this.timer.text = this.availableTime - this.secondsPassed;
+        if (!this.gameOver) {
+            this.secondsPassed += 1;
+            //this.runningTime = true;
+            //console.log("second passed " + this.secondsPassed);
+
+            this.timer.text = this.availableTime - this.secondsPassed;
+        }
 
 
     }
@@ -101,7 +119,9 @@ class Play extends Phaser.Scene {
             this.scene.start("menuScene");
         }
         // adding scrolling effect to starfield sprite (background effect)
-        this.starfield.tilePositionX -= 4;
+        this.starfield.tilePositionX -= 1;
+        this.streaks.tilePositionX -= 4;
+        this.dots.tilePositionX -= 0.1;
         // parallax addable here with diff speeds and multiple backgrounds
         
         // while game is not over
