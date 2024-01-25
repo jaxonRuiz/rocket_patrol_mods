@@ -23,13 +23,11 @@ class UFO extends Phaser.GameObjects.Sprite {
         // ufo moving left
         this.move();
 
-
         // bounce on left wall
         if(this.x <= 0 + this.width) {
             //this.x = game.config.width - this.width;
             this.speed = Math.abs(this.speed);
             this.goingRight = true;
-            console.log("speed" + this.speed);
             //this.distance = game.config.width / 2;
         }
         // bounce on right wall
@@ -46,7 +44,7 @@ class UFO extends Phaser.GameObjects.Sprite {
         this.x += this.speed;
         this.distance -= Math.abs(this.speed);
         //console.log("distance remaining: " + this.distance);
-        if (this.distance <= 0) {
+        /*if (this.distance <= 0) {
             console.log("changing direction");
             this.distance = Math.random() * (this.maxDistance - this.minDistance) + this.minDistance;
             this.speed = Math.random() * (this.maxSpeed - this.minSpeed) + this.minSpeed;
@@ -56,7 +54,7 @@ class UFO extends Phaser.GameObjects.Sprite {
                 this.speed = -1 * this.speed;
             }
             console.log("speed: " + this.speed);
-        }
+        }*/
     }
 
     // reset position
@@ -68,8 +66,10 @@ class UFO extends Phaser.GameObjects.Sprite {
     
     levelUp() {
         this.level += 1;
-        console.log("level up");
-        this.moveSpeed += this.level / 4;
+        console.log("level up ufo");
+        this.MaxSpeed += this.level / 4;
+        this.minSPeed += this.level / 4;
         this.pointValue += Math.floor(7 * 0.5 * this.level);
+        
     }
 }

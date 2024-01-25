@@ -107,7 +107,8 @@ class Play extends Phaser.Scene {
         // while game is not over
         if (!this.gameOver) {
             if (this.availableTime - this.secondsPassed < 0) {
-                this.gameOver = true;
+                console.log("sould be game over");
+                this.gameOverFunc();
             }
 
             // allowing the rocket update cycle to run in this scene
@@ -130,6 +131,10 @@ class Play extends Phaser.Scene {
         if (this.checkCollision(this.p1Rocket, this.ship01)) {
             this.p1Rocket.reset();
             this.shipExplode(this.ship01);
+        }
+        if (this.checkCollision(this.p1Rocket, this.ufo)) {
+            this.p1Rocket.reset();
+            this.shipExplode(this.ufo);
         }
 
         // rocket missed

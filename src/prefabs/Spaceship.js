@@ -5,6 +5,7 @@ class Spaceship extends Phaser.GameObjects.Sprite {
         this.points = pointValue;
         this.level = 1;
         this.moveSpeed = game.settings.spaceshipSpeed;
+        
     }
 
     update() {
@@ -27,7 +28,11 @@ class Spaceship extends Phaser.GameObjects.Sprite {
     levelUp() {
         this.level += 1;
         console.log("level up");
-        this.moveSpeed += this.level / 4;
-        this.pointValue += Math.floor(7 * 0.5 * this.level);
+
+        // capping ship levels at 5
+        if (this.level < 5) {
+            this.moveSpeed += this.level / 4;
+            this.pointValue += Math.floor(7 * 0.5 * this.level);
+        }
     }
 }
