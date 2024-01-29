@@ -1,7 +1,7 @@
 /* Head comment:
 * Author: Jaxon Ruiz
 * Mod Name: "Better than League of Legends"
-* approximately 7 hours, but heavy guess-imating
+* approximately 7 hours, but im heavily guess-imating
 * Mod List:
 (3 points) Dynamic difficulty in enemy ships, where every hit increases the ship’s speed and points
 (for balancing, the player rocket’s horizontal move speed was increased to 3.5, while keeping the shot speed at 2

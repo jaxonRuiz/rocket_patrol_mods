@@ -1,1 +1,1 @@
-project 1 for cmpm 120
+project 2 for cmpm 120
